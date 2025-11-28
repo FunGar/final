@@ -1,24 +1,18 @@
 ﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Interactions;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Xml.Linq;
 
 namespace final
 {
     public class ActionsFactory
     {
-        private IWebDriver driver = null!;
+        private IWebDriver _driver = null!;
         public string CmdCtrl { get; set; } = null!;
 
         public ActionsFactory(IWebDriver driver) : this(driver, Keys.Control) { }
 
         public ActionsFactory(IWebDriver driver, string cmdCtrl)
         {
-            this.driver = driver;
+            this._driver = driver;
             CmdCtrl = cmdCtrl;
         }
 
@@ -30,7 +24,7 @@ namespace final
         /// <returns>Safe clear action</returns>
         public Actions GetSafeClear(IWebElement element)
         {
-            return new Actions(driver)
+            return new Actions(_driver)
                 .MoveToElement(element)
                 .Click()
                 .KeyDown(CmdCtrl)
